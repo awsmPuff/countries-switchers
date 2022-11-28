@@ -1,70 +1,142 @@
-# Getting Started with Create React App
+# Frontend Mentor - REST Countries API with color theme switcher solution
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Overview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### The challenge
 
-### `npm test`
+Users should be able to:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- See all countries from the API on the homepage
+- Search for a country using an `input` field
+- Filter countries by region
+- Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
+- Toggle the color scheme between light and dark mode *(optional)*
 
-### `npm run build`
+### Screenshot
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![](./src/screenshots/desktop-light.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Links
 
-### `npm run eject`
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [https://laurenxx-countries-switcher.netlify.app/](https://your-live-site-url.com)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## My process
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built with
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Semantic HTML5 markup
+- CSS Custom Properties
+- Flexbox
+- Mobile-first workflow
+- React Router
+- [React](https://reactjs.org/) - JS library
+- [Styled Components](https://styled-components.com/) - For styles
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+### What I learned
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+// Search by country name
+ const countryName = document.querySelectorAll('.country-name');
+  countryName.forEach(name => {
+    if(name.innerHTML.toLowerCase().includes(input.toLowerCase())) {
+      name.parentElement.parentElement.style.display = 'block';
+    } else {
+      name.parentElement.parentElement.style.display = 'none';
+    }
+  })
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+// Filter by Region
+ const regions = [
+    {
+      name: 'All'
+    },
+    {
+      name: 'Africa'
+    },
+    {
+      name: 'Americas'
+    },
+    {
+      name: 'Asia'
+    },
+    {
+      name: 'Europe'
+    },
+    {
+      name: 'Oceania'
+    }
+  ]
+ async function filterByRegion(region) {
+    
+    if(region == 'All') {
+      try {
+        const res = await fetch(`https://restcountries.com/v2/all`)
+        const data = await res.json()
+        setCountries(data)
+      }
+      catch(err) {
+        console.log(err)
+      }
+    } else {
+      try {
+        const res = await fetch(`https://restcountries.com/v2/region/${region}`)
+        const data = await res.json()
+        setCountries(data)
+      }
+      catch(err) {
+        console.log(err)
+      }
+    }
+  }
 
-### Code Splitting
+  const handleFilterByRegion = (e) => {
+    e.preventDefault();
+    filterByRegion();
+  }
+<form onSubmit={handleFilterByRegion}>
+        <select 
+          className='element' 
+          name='filter-by-region' 
+          id='filter-by-region'
+          aria-label='Filter by Region'
+          value={regions.name}
+          onChange={e => filterByRegion(e.target.value)}
+        >
+        {regions.map((region, index) => (
+          <option key={index} value={region.name}>
+            {region.name}
+          </option>
+        ))}
+        </select>
+</form>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### Useful resources
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [REST Countries API](https://restcountries.com) - Database for countries.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Author
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Website - [Wanxia Xie/Laurenxx](https://www.your-site.com)
+- Frontend Mentor - [@awsmPuff](https://www.frontendmentor.io/profile/awsmPuff)

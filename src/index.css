@@ -1,13 +1,129 @@
-body {
+:root {
+  /* Light Mode */
+  --light-mode-bg: hsl(0, 0%, 98%);
+  --light-mode-text: hsl(200, 15%, 8%);
+  --light-mode-elements: hsl(0, 0%, 100%);
+  --light-mode-input: hsl(0, 0%, 52%);
+  /* Dark Mode */
+  --dark-mode-bg: hsl(207, 26%, 17%);
+  --dark-mode-text: hsl(0, 0%, 100%);
+  --dark-mode-elements: hsl(209, 23%, 22%);
+  /* Other */
+  --transition: 0.25s ease-in;
+}
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+/* Default: 375px width */
+html {
+  font-size: 13px;
+}
+.CountryDetail {
+  font-size: 15px;
+  width: 100%;
+  height: 100vh;
+}
+body {
+  width: 100%;
+  font-weight: 600;
+}
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+button:hover {
+  opacity: 0.6;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button,
+select {
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+a {
+  text-decoration: none;
+  width: max-content;
+}
+.error, 
+.loading {
+  font-size: 2rem;
+  margin: 3rem 5%;
+}
+
+/* Light Mode */
+.light {
+  color: var(--light-mode-text);
+  background-color: var(--light-mode-bg);
+}
+.light a {
+  color: var(--light-mode-text);
+}
+.light .element {
+  color: var(--light-mode-text);
+  background-color: var(--light-mode-elements);
+}
+.light .boxShadow {
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+}
+.light .deep-boxShadow {
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+}
+.light svg,
+.light .search {
+  color: var(--light-mode-input);
+}
+.light select {
+  background: url(https://cdn.iconfinder.com/stored_data/738398/128/png?token=1669615006-u2yniGpQ7tm%2FQmIb2qq6LMO%2BInEFBSKPNB6njLbpods%3D) no-repeat;
+}
+
+/* Dark Mode */
+.dark {
+  color: var(--dark-mode-text);
+  background-color: var(--dark-mode-bg);
+}
+.dark a {
+  color: var(--dark-mode-text);
+}
+.dark .element {
+  color: var(--dark-mode-text);
+  background-color: var(--dark-mode-elements);
+}
+.dark .boxShadow {
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+}
+.dark .deep-boxShadow {
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.8);
+}
+.dark svg,
+.dark .search {
+  color: var(--dark-mode-text);
+}
+.dark select {
+  background: url(https://cdn.iconfinder.com/stored_data/738399/128/png?token=1669615006-inEnJ1JxR0HLa8qpFvIMquDZqtWkbFwR0wQOoEvGaDs%3D) no-repeat;
+}
+
+
+@media (min-width: 760px) {
+  html {
+      font-size: 14px;
+  }
+  .CountryDetail {
+      font-size: 16px;
+  }
+}
+
+@media (min-width: 1400px) {
+  html {
+      font-size: 15px;
+  }
+  .CountryDetail {
+      font-size: 17px;
+  }
 }
