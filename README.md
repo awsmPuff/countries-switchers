@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/awsmPuff/countries-switchers](https://your-solution-url.com)
-- Live Site URL: [https://laurenxx-countries-switcher.netlify.app/](https://your-live-site-url.com)
+- Solution URL: [https://github.com/awsmPuff/countries-switchers](https://github.com/awsmPuff/countries-switchers)
+- Live Site URL: [https://laurenxx-countries-switcher.netlify.app/](https://laurenxx-countries-switcher.netlify.app/)
 
 ## My process
 
